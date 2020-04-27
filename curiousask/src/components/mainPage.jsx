@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Intro from './intro';
 // import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-
+import Intro from './intro';
+import ProfilePage from './profilePage';
+import Discussion from './discussion';
 class MainPage extends Component{
     render(){
         return(
@@ -11,9 +12,8 @@ class MainPage extends Component{
                 <div>
                     <Switch>
                         <Route path="/" component={Intro} exact/>
-                        <Route path="/home" component={Home}/>
-                        <Route path="/pharmaList" component={PharmaList}/>
-                        <Route path="/mediList" component={MediList}/>
+                        <Route path="/profilePage" component={ProfilePage}/>
+                        <Route path="/discussion" component={Discussion}/>
                         <Route component={Error}/>
                     </Switch>
                 </div> 
