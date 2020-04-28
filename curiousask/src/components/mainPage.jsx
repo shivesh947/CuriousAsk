@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-// import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Intro from './intro';
 import ProfilePage from './profilePage';
 import Discussion from './discussion';
 class MainPage extends Component{
+    
     render(){
         return(
             <div>
-                <Intro/>
-            {/* <Router>
+            <Router>
                 <div>
                     <Switch>
                         <Route path="/" component={Intro} exact/>
@@ -17,7 +17,7 @@ class MainPage extends Component{
                         <Route component={Error}/>
                     </Switch>
                 </div> 
-            </Router> */}
+            </Router>
         </div>
         )
     }
