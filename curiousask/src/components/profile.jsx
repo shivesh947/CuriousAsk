@@ -4,7 +4,12 @@ class Profile extends Component{
     render(){
         return(
             <div>
-                profile
+                <div>
+
+                </div>
+                <div>
+                    <button></button>
+                </div>
             </div>
         )
     }

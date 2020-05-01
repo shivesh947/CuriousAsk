@@ -8,56 +8,60 @@ class ProfilePage extends Component{
         super();
         this.state={
             check:0,
-            search:""
+            search:"",
+            name:"Shivam Kaushik",
         }
     }
     render(){
         return(
-            <div style={{widht:'vw'}}>
-                <div className="row  align-middle h-50 p-3 bg-danger">
-                    <div className="col-sm-3 display-4 text-light font-weight-bolder">CuriousAsk</div>
+            <div>
+                <div className="row  align-middle h-50 p-3 bg-danger sticky-top">
+                    <div className="col-sm-3 display-4 text-light font-weight-bolder" onClick={this.changeOne}>CuriousAsk</div>
                     <div className="col-sm-3 pt-3">
-                        <form onSubmit={this.login}>
-                            <div className="form-group d-flex flex-row-reverse row">
-                                <div className="col-xs-4 pt-1">
-                                    <button type="submit"  className="btn btn-primary">search</button>
+                        <form>
+                            <div className="input-group d-flex flex-row-reverse row">
+                                <div className="pt-1">
+                                    <button onClick={this.search} className="btn btn-light">search</button>
                                 </div>   
-                                <div className="col-xs-8 pt-1">
-                                    <input type="text" placeholder="UserName" className="form-control" ref="logUser"></input>
+                                <div className="pt-1">
+                                    <input type="text" placeholder="UserName" className="form-control input-goup-lg" ref={this.textRef}></input>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div className="col-sm-6 d-flex flex-row-reverse row pt-3">
                         <div className="col-xs-3">
-                            <button type="submit"  className="btn text-light btn-lg">logout</button>
+                            <button className="btn text-light btn-lg nohover">logout</button>
                         </div>
                         <div className="col-xs-3">
-                            <button type="submit" className="btn text-light btn-lg">Profile</button>
+                            <button className="btn text-light btn-lg" onClick={this.changeThree}>Profile</button>
                         </div>
                         <div className="col-xs-3">
-                            <button type="submit"  className="btn text-light btn-lg">My Questions</button>
+                            <button  className="btn text-light btn-lg" onClick={this.changeTwo}>My Questions</button>
                         </div>
                         <div className="col-xs-3">
-                            <button type="submit"  className="btn text-light btn-lg">Home</button>
+                            <button className="btn text-light btn-lg" onClick={this.changeOne}>Home</button>
                         </div>
                     </div>
                 </div>
-                <div className="row bg-light pt-5" style={{height:'80vh'}}>
-                    <div className="col-sm-3 display-2 text-danger font-weight-bolder text-center">
+                <div className="row pt-3 px-5">
+                    <div className="col-sm-2.5 text-center position-static">
+                            <div className="card">
+                                <div className="card-body">
+                                <h4 className="card-title">{this.state.name}</h4>
+                                <button onClick={this.changeThree} className="btn btn-primary">See Profile</button>
+                                </div>
+                            </div>
                     </div>
-                    <div className="col-sm-9 form-group px-5">
-                        
+                    <div className="col-sm-9.5 px-5 w-75">
+                        {this.state.check===0?(<Home/>):this.state.check===1?(<MyQuestion/>):(<Profile/>)}
                     </div>
                 </div>   
             </div>
-            // <div>
-            //     <button onClick={this.changeOne}>home</button>
-            //     <button onClick={this.changeTwo}>profile</button>
-            //     <button onClick={this.changeThree}>information</button>
-            //     {this.state.check===0?(<Home/>):this.state.check===1?(<MyQuestion/>):(<Profile/>)}
-            // </div>
         )
+    }
+    textRef=(element)=>{
+        this.setState({search:element});
     }
     changeOne=()=>{
         this.setState({check:0});
@@ -67,6 +71,10 @@ class ProfilePage extends Component{
     }
     changeThree=()=>{
         this.setState({check:2});
+    }
+    search=(event)=>{
+        event.preventDefault();
+        console.log(this.state.search);
     }
 }
 export default ProfilePage;
