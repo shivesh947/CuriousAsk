@@ -12,7 +12,7 @@ class QuestionPost extends Component{
         return(
             <div className="form-group p-3">
                 <div>
-                    <textarea className="form-control" ref={this.textRef}/>
+                    <textarea className="form-control" placeholder="Curious about something.... Ask it here!" ref={this.textRef}/>
                 </div>
                 <div className="row p-2">
                     <div className="col-sm-6">
