@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom';
 import QuestionPost from './questionPost';
 
 class MyQuestion extends Component{
@@ -20,7 +21,7 @@ class MyQuestion extends Component{
                                 <h1> my question</h1>
                             </div>
                             <div className="text-right">
-                                <button className="btn btn-primary">discussion</button>
+                                <Link to="/discussion" target="_blank" className="btn btn-primary">discussion</Link>
                             </div>
                         </div>
                     </div>

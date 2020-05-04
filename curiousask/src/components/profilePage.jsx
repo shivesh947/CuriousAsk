@@ -24,7 +24,7 @@ class ProfilePage extends Component{
                                     <button onClick={this.search} className="btn btn-light">search</button>
                                 </div>   
                                 <div className="pt-1">
-                                    <input type="text" placeholder="UserName" className="form-control input-goup-lg" ref={this.textRef}></input>
+                                    <input type="text" placeholder="UserName" className="form-control input-goup-lg" onChange={this.textRef.bind()}></input>
                                 </div>
                             </div>
                         </form>
@@ -61,7 +61,7 @@ class ProfilePage extends Component{
         )
     }
     textRef=(element)=>{
-        this.setState({search:element});
+        this.setState({search:element.target.value});
     }
     changeOne=()=>{
         this.setState({check:0});

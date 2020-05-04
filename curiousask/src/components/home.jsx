@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import QuestionPost from './questionPost';
 
@@ -21,7 +22,7 @@ class Home extends Component{
                                 <h1>question</h1>
                             </div>
                             <div className="text-right">
-                                <button className="btn btn-primary">discussion</button>
+                                <Link to="/discussion" target="_blank" className="btn btn-primary">discussion</Link>
                             </div>
                         </div>
                     </div>

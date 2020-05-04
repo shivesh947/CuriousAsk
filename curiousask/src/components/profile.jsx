@@ -8,8 +8,6 @@ class Profile extends Component{
             pass2:"",
             nope:false
         }
-        this.textRef1=React.createRef();
-        this.textRef2=React.createRef();
     }
     render(){
         return(
@@ -31,10 +29,10 @@ class Profile extends Component{
                     </div>
                     <div className="pl-5">
                         <div className="p-2">
-                            <input type="text" className="form-control" placeholder="Current Password" ref={this.textRef1}></input>
+                            <input type="password" className="form-control" placeholder="Current Password" onChange={this.textRef1.bind()}></input>
                         </div>
                         <div className="p-2">
-                            <input type="text" className="form-control" placeholder="New Password" ref={this.textRef2}></input>
+                            <input type="password" className="form-control" placeholder="New Password" onChange={this.textRef2.bind()}></input>
                         </div>
                         <div className="row p-2">
                             <div className="col-sm-6">
@@ -50,13 +48,13 @@ class Profile extends Component{
         )
     }
 
-    // textRef1=(element)=>{
-    //     this.setState({pass1:element});
-    // }
+    textRef1=(element)=>{
+        this.setState({pass1:element.target.value});
+    }
 
-    // textRef2=(element)=>{
-    //     this.setState({pass2:element});
-    // }
+    textRef2=(element)=>{
+        this.setState({pass2:element.target.value});
+    }
 
     changePass=(event)=>{
         event.preventDefault();
