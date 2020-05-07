@@ -21,7 +21,11 @@ const PostModel = mongoose.model("Posts",postSchema,"posts");
 PostModel.findSpecific = function(req,callBack){
     let post = { typeOf: req.body.type};
     JSON.stringify(post);
-    PostModel.find(post,callBack);
+    PostModel.find(post,callBack).sort({date: -1});
+}
+
+PostModel.findAll = function(req,callBack){
+    PostModel.find(callBack).sort({date:-1});
 }
 
 module.exports = PostModel;
