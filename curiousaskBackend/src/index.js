@@ -9,8 +9,8 @@ const post=require('./routes/post');
 const comment=require('./routes/comment');
 
 app.use('/user',user);
-app.use('/post',post);
-app.use('/comment',comment);
+app.use('/post',verifyUser,post);
+app.use('/comment',verifyUser,comment);
 
 app.use(bodyParser.json());
 

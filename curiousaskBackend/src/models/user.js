@@ -21,7 +21,7 @@ const usersSchema = new mongoose.Schema({
 
 const UsersModel = mongoose.model("Users", usersSchema, "users");
 
-UsersModel.findUserForLogin = function (req, callBack) {
+UsersModel.logIn = function (req, callBack) {
     let user = { userName: req.body.userName, password: req.body.password };
     JSON.stringify(user);
     UsersModel.find(user, callBack);
