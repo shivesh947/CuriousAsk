@@ -11,7 +11,7 @@ const commentSchema = new mongoose.Schema({
     },
     userName:{
         type:String,
-        required:ture
+        required:true
     },
     date:Number
 

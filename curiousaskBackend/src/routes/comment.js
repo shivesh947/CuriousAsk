@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const CommentModel = require('./../models/comment')
 
-CommentModel.post('/addComment',(req,res)=>{
+router.post('/addComment',(req,res)=>{
     CommentModel.addComment(req,(error,response)=>{
         if(error){
             res.sendStatus('403')
@@ -12,7 +12,7 @@ CommentModel.post('/addComment',(req,res)=>{
     })
 })
 
-CommentModel.get('/findComment',(req,res)=>{
+router.get('/findComment',(req,res)=>{
     CommentModel.findComment(req,(error,response)=>{
         if(error){
             res.sendStatus('404')
@@ -21,3 +21,5 @@ CommentModel.get('/findComment',(req,res)=>{
         }
     })
 })
+
+module.exports = router;

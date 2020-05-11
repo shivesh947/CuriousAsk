@@ -9,11 +9,38 @@ const user=require('./routes/user');
 const post=require('./routes/post');
 const comment=require('./routes/comment');
 
+app.use(express.json());
+app.use(bodyParser.json());
+
+const verifyUser=(req,res,next)=>{ 
+    // console.log("here")
+    // console.log(err.body)
+    const token = req.body.token
+    if(!token){
+        res.sendStatus('401');
+    }else{
+        var payload
+        try {
+            payload = jwt.verify(token, "secretKey")
+        console.log("token ok")
+        } catch (e) {
+            if (e instanceof jwt.JsonWebTokenError) {
+                // console.log("here1")
+                return res.status(401).end()
+            }
+            // console.log("here2")
+            return res.status(400).end()
+        }
+        // console.log("token ok")
+        // res.send(`Welcome ${payload.username}!`)
+        // res.send('ok')
+        next();
+    }
+}
+
 app.use('/user',user);
 app.use('/post',verifyUser,post);
 app.use('/comment',verifyUser,comment);
-
-app.use(bodyParser.json());
 
 app.use("*", (req, res, next) => {
     console.log("Middleware is called");
@@ -23,24 +50,6 @@ app.use("*", (req, res, next) => {
     next();
 })
 
-verifyUser=(err,req,res)=>{ 
-    const token = req.token
-    if(err||!token){
-        res.sendStatus('401');
-    }else{
-        var payload
-        try {
-            payload = jwt.verify(token, "secretKey")
-        } catch (e) {
-            if (e instanceof jwt.JsonWebTokenError) {
-                return res.status(401).end()
-            }
-            return res.status(400).end()
-        }
-        res.send(`Welcome ${payload.username}!`)
-    }
-}
-
 app.get('/',(req,res)=>res.send('Curious Ask!'));
 
-app.listen(port,()=>console.log(listening));
+app.listen(port,()=>console.log('listening'));

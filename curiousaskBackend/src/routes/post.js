@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const PostsModel = require('./../models/post')
 
-PostsModel.post('/addPost',(req,res)=>{
+router.post('/addPost',(req,res)=>{
     PostsModel.addPost(req,(error,response)=>{
         if(error){
             res.sendStatus('403')
@@ -12,7 +12,7 @@ PostsModel.post('/addPost',(req,res)=>{
     })
 })
 
-PostsModel.get('/findTopic',(req,res)=>{
+router.get('/findTopic',(req,res)=>{
     PostsModel.findTopic(req,(error,response)=>{
         if(error){
             res.sendStatus('404')
@@ -22,7 +22,7 @@ PostsModel.get('/findTopic',(req,res)=>{
     })
 })
 
-PostsModel.get('/findSpecific',(req,res)=>{
+router.get('/findSpecific',(req,res)=>{
     PostsModel.findSpecific(req,(error,response)=>{
         if(error){
             res.sendStatus('404')
@@ -32,7 +32,8 @@ PostsModel.get('/findSpecific',(req,res)=>{
     })
 })
 
-PostsModel.get('/findAll',(req,res)=>{
+router.get('/findAll',(req,res)=>{
+    // console.log("route check")
     PostsModel.findAll(req,(error,response)=>{
         if(error){
             res.sendStatus('404')
@@ -42,7 +43,7 @@ PostsModel.get('/findAll',(req,res)=>{
     })
 })
 
-PostsModel.get('/findUser',(req,res)=>{
+router.get('/findUser',(req,res)=>{
     PostsModel.findUser(req,(error,response)=>{
         if(error){
             res.sendStatus('404')
@@ -51,3 +52,5 @@ PostsModel.get('/findUser',(req,res)=>{
         }
     })
 })
+
+module.exports = router;

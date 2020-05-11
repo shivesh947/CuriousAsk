@@ -21,10 +21,13 @@ const usersSchema = new mongoose.Schema({
 
 const UsersModel = mongoose.model("Users", usersSchema, "users");
 
-UsersModel.logIn = function (req, callBack) {
-    let user = { userName: req.body.userName, password: req.body.password };
-    JSON.stringify(user);
-    UsersModel.find(user, callBack);
+UsersModel.logIn = function (req,res,callBack) {
+    // let user = { userName: req.body.userName, password: req.body.password };
+    // JSON.stringify(user);
+    console.log(req.body)
+    // callBack
+    res.send('corect')
+    // UsersModel.find(user, callBack);
 }
 
 UsersModel.addUser = function (req, callBack) {
