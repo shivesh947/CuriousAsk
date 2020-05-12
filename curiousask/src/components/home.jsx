@@ -3,7 +3,19 @@ import {Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import QuestionPost from './questionPost';
 
-class Home extends Component{    
+class Home extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            postType:0,
+            postList:[]
+        }
+        this.getPost.bind();
+    }    
+    componentDidMount(){
+        this.setState({postType:this.props.type})
+        this.getPost();
+    }
     render(){
         return(
             <div>
@@ -29,6 +41,10 @@ class Home extends Component{
                 </div>
             </div>
         )
+    }
+
+    getPost=()=>{
+        console.log("hello");
     }
 }
 

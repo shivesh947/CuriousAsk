@@ -8,7 +8,9 @@ class Intro extends Component{
             pnm:false,
             enm:false,
             unm:false,
-            lnm:false
+            lnm:false,
+            userDetail:[],
+            redir:false
         }
     }
     render(){
@@ -80,6 +82,27 @@ class Intro extends Component{
             userName:this.refs.logUser.value,
             password:this.refs.logPass.value
         }
+        fetch("http://127.0.0.1/user/logIn",{
+            method:'POST',
+            headers:{
+                'content-Type': 'application/json'
+            },
+            body:{user}
+        })
+        .then(res=>{
+            if(res.ok)
+                return res.json()
+        })
+        .then(res=>{
+            if(res.ok)
+                this.setState({userDetail:res,redir:true})
+        })
+        .then(res=>{
+            this.setState({lnm:true})
+        })
+        .catch(err=>{
+            console.log(err)
+        })
         console.log(user);
     }
 
@@ -95,6 +118,27 @@ class Intro extends Component{
                 lastName:this.refs.lname.value,
                 eMail:this.refs.email.value
             }
+            fetch("http://127.0.0.1/user/addUser",{
+            method:'POST',
+            headers:{
+                'content-Type': 'application/json'
+            },
+            body:{user}
+            })
+            .then(res=>{
+                if(res.ok)
+                    return res.json()
+            })
+            .then(res=>{
+                if(res.ok)
+                    this.setState({userDetail:res,redir:true})
+            })
+            .then(res=>{
+                this.setState({lnm:true})
+            })
+            .catch(err=>{
+                console.log(err)
+            })
             console.log(user);
         }else{
             this.setState({pnm:true})

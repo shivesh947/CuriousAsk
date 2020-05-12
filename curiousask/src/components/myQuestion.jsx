@@ -3,11 +3,20 @@ import {Link} from 'react-router-dom';
 import QuestionPost from './questionPost';
 
 class MyQuestion extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            postList:[]
+        }
+    }
+    componentDidMount(){
+        this.fetchPost();
+    }
     render(){
         return(
             <div>
                 <div>
-                    <QuestionPost/>
+                    <QuestionPost state={token=this.props.token,userName=this.props.userName,userId=this.props.userId}/>
                 </div>
                 <div>
                     <div>
@@ -29,6 +38,11 @@ class MyQuestion extends Component{
             </div>
             
         )
+    }
+    fetchPost=()=>{
+        post={
+            typeOf:this.props.typeOf
+        }
     }
 }
 

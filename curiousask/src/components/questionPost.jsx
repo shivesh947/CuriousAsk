@@ -2,8 +2,8 @@ import React,{Component} from 'react';
 
 class QuestionPost extends Component{
     
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             val:"",
             post:""
@@ -47,9 +47,13 @@ class QuestionPost extends Component{
     ask=(event)=>{
         event.preventDefault();
         var post={
+            token:this.props.token,
+            userId:this.props.userId,
+            userName:this.props.userName,
             ques:this.state.val,
             type:this.state.post
         }
+        // fetch()
         console.log(post);
     }
 }

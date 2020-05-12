@@ -2,6 +2,12 @@ import React,{Component} from 'react';
 import Comment from './comment';
 
 class Question extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            
+        }
+    }
     render(){
         return(
             <div className="p-5 px-5">
@@ -21,7 +27,7 @@ class Question extends Component{
                                     <textarea className="form-control" ref={this.textRef}/>
                                 </div>
                                 <div className="text-right p-2">
-                                    <button className="btn btn-primary">Answer it!</button>
+                                    <button className="btn btn-primary" onClick={postComment}>Answer it!</button>
                                 </div>
                             </div>
                         </div>
@@ -35,6 +41,13 @@ class Question extends Component{
                 </div>
             </div>
         )
+    }
+    postComment=(event)=>{
+        event.preventDefault();
+        comment={
+            token:this.props.token,
+
+        }
     }
 }
 

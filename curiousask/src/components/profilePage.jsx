@@ -4,8 +4,8 @@ import Profile from './profile';
 import Home  from './home';
 
 class ProfilePage extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             check:0,
             search:"",
@@ -48,13 +48,31 @@ class ProfilePage extends Component{
                     <div className="col-sm-2.5 text-center position-static">
                             <div className="card">
                                 <div className="card-body">
-                                <h4 className="card-title">{this.state.name}</h4>
+                                <h4 className="card-title">{this.props.fName} {this.props.lName}</h4>
                                 <button onClick={this.changeThree} className="btn btn-primary">See Profile</button>
                                 </div>
                             </div>
                     </div>
                     <div className="col-sm-9.5 px-5 w-75">
-                        {this.state.check===0?(<Home/>):this.state.check===1?(<MyQuestion/>):(<Profile/>)}
+                        {this.state.check===0?(<Home state={
+                            token=this.props.token,
+                            userNamethis.props.userName,
+                            userId=this.props.userId,
+                            typeOf=this.state.search
+                        }/>):
+                        this.state.check===1?(<MyQuestion state={
+                            token=this.props.token,
+                            userNamethis.props.userName,
+                            userId=this.props.userId
+                        }/>):
+                        (<Profile state={
+                            token=this.props.token,
+                            userNamethis.props.userName,
+                            userId=this.props.userId,
+                            eMail=this.props.eMail,
+                            fName=this.props.fName,
+                            lName=this.props.lName
+                            }/>)}
                     </div>
                 </div>   
             </div>
