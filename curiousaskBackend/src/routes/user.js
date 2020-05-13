@@ -4,7 +4,7 @@ const UsersModel = require('./../models/user')
 const jwt = require('jsonwebtoken')
 
 const tokenGenerator = (user,email)=>{
-    console.log("hello")
+    // console.log(user,email);
     const token = jwt.sign(
         { userName:user,
         eMail:email }, 
@@ -15,17 +15,17 @@ const tokenGenerator = (user,email)=>{
 }
 
 router.post('/logIn',(req,res)=>{
-    // var token = tokenGenerator("response.userName","response.eMail");
-    //     console.log(token)
-    UsersModel.logIn(req,res,(error,response)=>{
+    UsersModel.logIn(req,(error,response)=>{
         if(error){
-            res.sendStatus('404')
+            res.send('404')
         }else{
-            Console.log("1");
-            var token = tokenGenerator(response.userName,response.eMail);
-            res.send(token,response)
+            var token = "";
+            if(response.length>0){
+                token=tokenGenerator(response[0].userName,response[0].eMail);
+            }
+            var resp={token:token,resp:response}
+            res.send(resp)
         }
-            // res.send(token,response)
     })
 })
 
@@ -34,8 +34,12 @@ router.post('/addUser',(req,res)=>{
         if(error){
             res.sendStatus('403')
         }else{
-            var token = tokenGenerator(response.userName,response.eMail);
-            res.send(token,response)
+            var token = "";
+            if(response){
+                token=tokenGenerator(response.userName,response.eMail);
+            }
+            var resp={token:token,resp:response}
+            res.send(resp)
         }
     })
 })

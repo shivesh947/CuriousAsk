@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 
 var postSchema = new mongoose.Schema({
+    userId:{
+        type:String,
+        required:true
+    },
     userName:{
         type:String,
         required:true
