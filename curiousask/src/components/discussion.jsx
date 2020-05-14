@@ -2,9 +2,9 @@ import React,{Component} from 'react';
 import Question from './question';
 
 class Discussion extends Component{
-    contructor(props){
-        super(props);   
-    }
+    // contructor(props){
+    //     super(props);   
+    // }
     render(){
         return(
             <div>
@@ -12,12 +12,12 @@ class Discussion extends Component{
                     CuriousAsk
                 </div>
                 <div>
-                    <Question state={
+                    {/* <Question state={
                         token=this.props.token,
                         userNamethis.props.userName,
                         userId=this.props.userId,
                         postId=this.props.postId
-                    }/>
+                    }/> */}
                 </div>
             </div>
         )

@@ -16,33 +16,50 @@ class MyQuestion extends Component{
         return(
             <div>
                 <div>
-                    <QuestionPost state={token=this.props.token,userName=this.props.userName,userId=this.props.userId}/>
+                    <QuestionPost state={this.props.state}/>
                 </div>
                 <div>
+                    {this.state.postList.map(post=>
                     <div>
                         <div className="p-4">
                             <div className="row">
-                                <div className="col-sm-8 font-weight-bold">username</div>
+                                <div className="col-sm-8 font-weight-bold">{post.userName}</div>
                                 <div className="col-sm-4 text-right">date</div>
                             </div>
                             
                             <div>
-                                <h1> my question</h1>
+                                <h1>{post.content}</h1>
                             </div>
                             <div className="text-right">
-                                <Link to="/discussion" target="_blank" className="btn btn-primary">discussion</Link>
+                                <Link to="/discussion" target="_blank" state={this.props.state} postId={post._id} className="btn btn-primary">discussion</Link>
                             </div>
                         </div>
                     </div>
+                    )}
                 </div>
             </div>
             
         )
     }
     fetchPost=()=>{
-        post={
-            typeOf:this.props.typeOf
+        var post={
+            userId:this.props.state.userId
         }
+        fetch("http://127.0.0.1:4000/post/findUser"+post,{
+            method:'GET',
+            headers:{
+                'content-Type': 'application/json'
+            }
+        })
+        .then(res=>{
+            return res.json()
+        })
+        .then(res=>{
+            this.setState({postList:res});
+        })
+        .catch(res=>{
+            console.log(`The error is : ${JSON.stringify(res)}`)
+        })
     }
 }
 

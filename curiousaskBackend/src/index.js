@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const jwt = require('jsonwebtoken');
 require('./dbConnection');
 const user=require('./routes/user');
@@ -7,7 +8,7 @@ const post=require('./routes/post');
 const comment=require('./routes/comment');
 
 const app = express();
-const port = 3001;
+const port = 4000;
 const verifyUser=(req,res,next)=>{ 
     const token = req.body.token
     if(!token){
@@ -27,15 +28,14 @@ const verifyUser=(req,res,next)=>{
     }
 }
 
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
 app.use("*", (req, res, next) => {
     console.log("Middleware is called");
     res.setHeader('Access-Control-Allow-Origin', "*")
-    // console.log("Middleware is called1");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-    // console.log("Middleware is called2");
+    res.setHeader("Access-Control-Allow-Headers", "ontent-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     res.setHeader("Access-Control-Allow-Methods", "*")
     next();
 })

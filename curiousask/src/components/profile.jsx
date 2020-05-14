@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
 
 class Profile extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             pass1:"",
             pass2:"",
@@ -13,15 +13,15 @@ class Profile extends Component{
         return(
             <div>
                 <div className="p-4 display-4">
-                    Welcome Username!
+                    Welcome {this.props.state.fName} {this.props.state.lName}!
                 </div>
                 <div className="p-3">
                     <h2>UserName:</h2>
-                    <h3 className="pl-5">username</h3>
+                    <h3 className="pl-5">{this.props.state.userName}</h3>
                 </div>
                 <div className="p-3">
                     <h2>Email:</h2>
-                    <h3 className="pl-5">shivamkaushik12799@gmail.com</h3>
+                    <h3 className="pl-5">{this.props.state.eMail}</h3>
                 </div>
                 <div className="p-3">
                     <div>

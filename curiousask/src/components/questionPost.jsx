@@ -47,14 +47,29 @@ class QuestionPost extends Component{
     ask=(event)=>{
         event.preventDefault();
         var post={
-            token:this.props.token,
-            userId:this.props.userId,
-            userName:this.props.userName,
+            token:this.props.state.token,
+            userId:this.props.state.userId,
+            userName:this.props.state.userName,
             ques:this.state.val,
             type:this.state.post
         }
-        // fetch()
-        console.log(post);
+        fetch("http://127.0.0.1:4000/post/addPost",{
+            method:'POST',
+            headers:{
+                'content-Type': 'application/json'
+            },
+            body:JSON.stringify(post)
+        })
+        .then(res=>{
+            if(res.ok){
+                return res.json()
+            }else{
+                throw err;
+            }
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
 }
 

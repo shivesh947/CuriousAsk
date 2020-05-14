@@ -27,7 +27,7 @@ class Question extends Component{
                                     <textarea className="form-control" ref={this.textRef}/>
                                 </div>
                                 <div className="text-right p-2">
-                                    <button className="btn btn-primary" onClick={postComment}>Answer it!</button>
+                                    <button className="btn btn-primary" onClick={this.postComment}>Answer it!</button>
                                 </div>
                             </div>
                         </div>
@@ -44,10 +44,9 @@ class Question extends Component{
     }
     postComment=(event)=>{
         event.preventDefault();
-        comment={
-            token:this.props.token,
-
-        }
+        // comment={
+        //     token:this.props.token,
+        // }
     }
 }
 

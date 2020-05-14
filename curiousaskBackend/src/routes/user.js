@@ -24,7 +24,9 @@ router.post('/logIn',(req,res)=>{
                 token=tokenGenerator(response[0].userName,response[0].eMail);
             }
             var resp={token:token,resp:response}
+            // console.log(resp);
             res.send(resp)
+            // console.log(resp);
         }
     })
 })
