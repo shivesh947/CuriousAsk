@@ -6,7 +6,7 @@ class QuestionPost extends Component{
         super(props);
         this.state={
             val:"",
-            post:""
+            post:"0"
         }
     }
 
@@ -50,8 +50,9 @@ class QuestionPost extends Component{
             token:this.props.state.token,
             userId:this.props.state.userId,
             userName:this.props.state.userName,
-            ques:this.state.val,
-            type:this.state.post
+            content:this.state.val,
+            typeOf:this.state.post,
+            date:Date.now()
         }
         fetch("http://127.0.0.1:4000/post/addPost",{
             method:'POST',
@@ -63,8 +64,6 @@ class QuestionPost extends Component{
         .then(res=>{
             if(res.ok){
                 return res.json()
-            }else{
-                throw err;
             }
         })
         .catch(err=>{

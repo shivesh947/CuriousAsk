@@ -40,8 +40,15 @@ PostsModel.findAll = function(req,callBack){
 }
 
 PostsModel.addPost = function(req,callBack){
-    let post=req.body;
+    let post={
+        userId:req.body.userId,
+        userName:req.body.userName,
+        content:req.body.content,
+        typeOf:req.body.typeOf,
+        date:req.body.date
+    };
     PostsModel.create(post,callBack);
+    // console.log(post);
 }
 
 PostsModel.findUser = function(req,callBack){

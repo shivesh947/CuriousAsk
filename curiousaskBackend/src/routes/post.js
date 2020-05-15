@@ -7,7 +7,8 @@ router.post('/addPost',(req,res)=>{
         if(error){
             res.sendStatus('403')
         }else{
-            res.send('post has been added')
+            // console.log(response)
+            res.send(response)
         }
     })
 })

@@ -23,17 +23,17 @@ class Home extends Component{
                 </div>
                 <div>
                     {this.state.postList.map(post=>
-                        <div>
+                        <div key={post._id}>
                             <div className="p-4">
                                 <div className="row">
                                     <div className="col-sm-8 font-weight-bold">{post.userName}</div>
-                                    <div className="col-sm-4 text-right">date</div>
+                                    <div className="col-sm-4 text-right">{new Date(post.date).toLocaleString()}</div>
                                 </div>
                                 <div>
                                     <h1>{post.content}</h1>
                                 </div>
                                 <div className="text-right">
-                                    <Link to="/discussion" state={this.props.state} postId={post._id} target="_blank" className="btn btn-primary">discussion</Link>
+                                    <Link to="/discussion" state={this.props.state} postid={post._id} target="_blank" className="btn btn-primary">discussion</Link>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@ class Home extends Component{
         var post={token:this.props.state.token,
             typeOf:this.state.postType}
         if(this.state.postType==="0"){
-            fetch("http://127.0.0.1:4000/post/findAll"+post,{
+            fetch(`http://127.0.0.1:4000/post/findAll?token=${post.token}`,{
                 method:'GET',
                 headers:{
                     'content-Type': 'application/json'

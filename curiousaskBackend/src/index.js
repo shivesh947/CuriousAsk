@@ -10,14 +10,18 @@ const comment=require('./routes/comment');
 const app = express();
 const port = 4000;
 const verifyUser=(req,res,next)=>{ 
-    const token = req.body.token
+    var token = req.body.token;
+    // console.log(req.query.token)
+    if(req.query.token&&req.query.token.length>0){
+        token = req.query.token   
+    }
     if(!token){
         res.sendStatus('401');
     }else{
         var payload
         try {
             payload = jwt.verify(token, "secretKey")
-        console.log("token ok")
+        // console.log("token ok")
         } catch (e) {
             if (e instanceof jwt.JsonWebTokenError) {
                 return res.status(401).end()
