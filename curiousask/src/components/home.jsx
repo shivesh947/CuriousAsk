@@ -12,7 +12,8 @@ class Home extends Component{
         }
     }    
     componentDidMount(){
-        this.setState({postType:this.props.state.search})
+        this.setState({postType:this.props.search})
+        // console.log(this.props.search)
         this.getPost();
     }
     render(){
@@ -46,6 +47,7 @@ class Home extends Component{
     getPost=()=>{
         var post={token:this.props.state.token,
             typeOf:this.state.postType}
+            // console.log(this.state.postType)
         if(this.state.postType==="0"){
             fetch(`http://127.0.0.1:4000/post/findAll?token=${post.token}`,{
                 method:'GET',
@@ -63,11 +65,13 @@ class Home extends Component{
                 console.log(`The error is : ${JSON.stringify(res)}`)
             })
         }else{
-            fetch("http://127.0.0.1:4000/user/findTopic"+post,{
-                method:'GET',
+            console.log(post);
+            fetch("http://127.0.0.1:4000/user/findTopic",{
+                method:'POST',
                 headers:{
                     'content-Type': 'application/json'
-                }
+                },
+                body:JSON.stringify(post)
             })
             .then(res=>{
                 return res.json()

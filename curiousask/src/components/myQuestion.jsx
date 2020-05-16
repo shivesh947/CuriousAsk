@@ -43,13 +43,15 @@ class MyQuestion extends Component{
     }
     fetchPost=()=>{
         var post={
+            token:this.props.state.token,
             userId:this.props.state.userId
         }
-        fetch("http://127.0.0.1:4000/post/findUser"+post,{
-            method:'GET',
+        fetch("http://127.0.0.1:4000/post/findUser",{
+            method:'POST',
             headers:{
                 'content-Type': 'application/json'
-            }
+            },
+            body:JSON.stringify(post)
         })
         .then(res=>{
             return res.json()
