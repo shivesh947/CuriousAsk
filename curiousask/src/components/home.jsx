@@ -65,7 +65,7 @@ class Home extends Component{
                 console.log(`The error is : ${JSON.stringify(res)}`)
             })
         }else{
-            console.log(post);
+            // console.log(post);
             fetch("http://127.0.0.1:4000/user/findTopic",{
                 method:'POST',
                 headers:{
