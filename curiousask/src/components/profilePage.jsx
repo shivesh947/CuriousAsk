@@ -62,11 +62,9 @@ class ProfilePage extends Component{
                                 </div>
                             </div>
                     </div>
-                    <div className="col-sm-9.5 px-5 w-75">
+                    <div className="col-sm-9.5 px-2" style={{width:'79vw'}}>
                         {this.state.check===0?(<Home state={this.props.location.state} search={this.state.search}/>):
                         this.state.check===1?(<MyQuestion state={this.props.location.state}/>):
-                        this.state.check===4?(<Home state={this.props.location.state} search={this.state.search}/>):
-                        this.state.check===5?(<MyQuestion state={this.props.location.state}/>):
                         (<Profile state={this.props.location.state}/>)
                         }
                     </div>

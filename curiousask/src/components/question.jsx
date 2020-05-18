@@ -9,12 +9,15 @@ class Question extends Component{
             post:{}
         }
     }
+    componentDidMount(){
+        this.fetchPost();
+    }
     render(){
         return(
-            <div className="p-5 px-5">
-                <div className="row">
-                    <div className="col-sm-2"></div>
-                    <div className="col-sm-8">
+            <div>
+                <div className="row pt-3">
+                    <div className="col-sm-1"></div>
+                    <div className="col-sm-10">
                         <div className="row">
                             <div className="col-sm-8 font-weight-bold"><h4>{this.state.post.Username}</h4></div>
                             <div className="col-sm-4 text-right"><h6>{new Date(this.state.post.date).toLocaleString()}</h6></div>
@@ -34,11 +37,11 @@ class Question extends Component{
                         </div>
                         <div>
                             <div className="p-2 pl-4">
-                                <Comment state={this.props.state} postid={this.props.postid}/>
+                                {/* <Comment state={this.props.state} postid={this.props.postid}/> */}
                             </div>
                         </div>
                     </div>
-                    <div className="col-sm-2"></div>
+                    <div className="col-sm-1"></div>
                 </div>
             </div>
         )
@@ -49,7 +52,8 @@ class Question extends Component{
     }
 
     fetchPost=(event)=>{
-        event.preventDefault();
+        // event.preventDefault();
+        // console.log(this.props.state,this.props.postid)
         var post={
             token:this.props.state.token,
             _id:this.props.postid

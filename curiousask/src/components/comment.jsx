@@ -31,7 +31,7 @@ class Comment extends Component{
 
     fetchComments=(event)=>{
         event.preventDefault();
-        comment={
+        var comment={
             token:this.props.state.token,
             userId:this.props.userid
         }

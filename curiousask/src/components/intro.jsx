@@ -138,12 +138,15 @@ class Intro extends Component{
         .then(res=>{
             if(res.ok){
                 this.setState({check1:true})
+                // console.log(res.json())
                 return res.json()
             }
         })
         .then(res=>{
-            if(this.state.check1){
+            if(this.state.check1 && res.resp.length>0){
                 this.setState({userDetail:res}) 
+            }else{
+                this.setState({check1:false})
             }
         })
         .then(res=>{
@@ -219,7 +222,7 @@ class Intro extends Component{
             .catch(err=>{
                 console.log(err)
             })
-            console.log(user);
+            // console.log(user);
         }else{
             this.setState({pnm:true})
         }
