@@ -17,7 +17,7 @@ class Discussion extends Component{
                     Discussion
                 </div>
                 </div>
-                <div>
+                <div style={{ height:"400px",overflow:"scroll" }}>
                     {this.props.postid===""?
                     <div className="display-4 bg-light text-center p-3">Right now no discussion is open!</div>:
                     <Question state={this.props.state} postid={this.props.postid}/>
