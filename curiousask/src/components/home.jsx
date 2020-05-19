@@ -43,7 +43,7 @@ class Home extends Component{
                         )}
                     </div>
                 </div>   
-                <div className="col-sm-5">
+                <div className="col-sm-5" style={{ height:"400px",overflow:"scroll" }}>
                     <Discussion state={this.props.state} postid={this.state.postid}/>
                 </div>
             </div>
