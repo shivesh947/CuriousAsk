@@ -12,6 +12,13 @@ class Question extends Component{
     componentDidMount(){
         this.fetchPost();
     }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.postid !== prevProps.postid){
+          this.fetchPost();
+        }
+    } 
+
     render(){
         return(
             <div>
@@ -19,11 +26,11 @@ class Question extends Component{
                     <div className="col-sm-1"></div>
                     <div className="col-sm-10">
                         <div className="row">
-                            <div className="col-sm-8 font-weight-bold"><h4>{this.state.post.Username}</h4></div>
-                            <div className="col-sm-4 text-right"><h6>{new Date(this.state.post.date).toLocaleString()}</h6></div>
+                            <div className="col-sm-8 font-weight-bold"><h6>{this.state.post.userName}</h6></div>
+                            <div className="col-sm-4 text-right">{new Date(this.state.post.date).toLocaleString()}</div>
                         </div>
                         <div>
-                            <h1>{this.state.post.content}</h1>
+                            <h3>{this.state.post.content}</h3>
                         </div>
                         <div>
                             <div className="form-group p-3">
@@ -37,7 +44,7 @@ class Question extends Component{
                         </div>
                         <div>
                             <div className="p-2 pl-4">
-                                {/* <Comment state={this.props.state} postid={this.props.postid}/> */}
+                                <Comment state={this.props.state} postid={this.props.postid}/>
                             </div>
                         </div>
                     </div>
@@ -51,9 +58,7 @@ class Question extends Component{
         this.setState({content:element})
     }
 
-    fetchPost=(event)=>{
-        // event.preventDefault();
-        // console.log(this.props.state,this.props.postid)
+    fetchPost=()=>{
         var post={
             token:this.props.state.token,
             _id:this.props.postid
@@ -69,7 +74,8 @@ class Question extends Component{
                 return res.json()
             })
             .then(res=>{
-                this.setState({post:res});
+                console.log(res)
+                this.setState({post:res[0]});
             })
             .catch(res=>{
                 console.log(`The error is : ${JSON.stringify(res)}`)

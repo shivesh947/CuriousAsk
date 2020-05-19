@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
-import {Link} from 'react-router-dom';
 import QuestionPost from './questionPost';
+import Discussion from './discussion';
 
 class MyQuestion extends Component{
     constructor(props){
         super(props);
         this.state={
-            postList:[]
+            postList:[],
+            postid:""
         }
     }
     componentDidMount(){
@@ -14,33 +15,46 @@ class MyQuestion extends Component{
     }
     render(){
         return(
-            <div>
-                <div>
-                    <QuestionPost state={this.props.state}/>
-                </div>
-                <div>
-                    {this.state.postList.map(post=>
-                    <div key={post._id}>
-                        <div className="p-4">
-                            <div className="row">
-                                <div className="col-sm-8 font-weight-bold">{post.userName}</div>
-                                <div className="col-sm-4 text-right">{new Date(post.date).toLocaleString()}</div>
-                            </div>
-                            
-                            <div>
-                                <h1>{post.content}</h1>
-                            </div>
-                            <div className="text-right">
-                                <Link to="/discussion" target="_blank" state={this.props.state} postid={post._id} className="btn btn-primary">discussion</Link>
+            <div className="row">
+                <div className="col-sm-7">
+                    <div>
+                        <QuestionPost state={this.props.state} updating={this.fetchAgain}/>
+                    </div>
+                    <div>
+                        {this.state.postList.map(post=>
+                        <div key={post._id}>
+                            <div className="p-4">
+                                <div className="row">
+                                    <div className="col-sm-8 font-weight-bold">{post.userName}</div>
+                                    <div className="col-sm-4 text-right">{new Date(post.date).toLocaleString()}</div>
+                                </div>
+                                
+                                <div>
+                                    <h1>{post.content}</h1>
+                                </div>
+                                <div className="text-right">
+                                    <button className="btn btn-primary" onClick={()=>this.discussionOpen(post._id)}>discussion</button>
+                                </div>
                             </div>
                         </div>
+                        )}
                     </div>
-                    )}
+                </div>
+                <div className="col-sm-5">
+                    <Discussion state={this.props.state} postid={this.state.postid}/>
                 </div>
             </div>
-            
         )
     }
+    
+    fetchAgain=()=>{
+        this.fetchPost();
+    }
+
+    discussionOpen=(element)=>{
+        this.setState({postid:element},()=>{})
+    }
+
     fetchPost=()=>{
         var post={
             token:this.props.state.token,

@@ -18,14 +18,8 @@ class ProfilePage extends Component{
                 <div className="row  align-middle h-50 p-3 bg-danger sticky-top">
                     <div className="col-sm-3 display-4 text-light font-weight-bolder" onClick={this.changeOne}>CuriousAsk</div>
                     <div className="col-sm-3 pt-3 pl-5">
-                        {/* <form> */}
+                        {this.state.check===0?
                             <div className="input-group">
-                                {/* <div className="pt-1">
-                                    <button onClick={this.search} className="btn btn-light">search</button>
-                                </div>   
-                                <div className="pt-1">
-                                    <input type="text" placeholder="UserName" className="form-control input-goup-lg" onChange={this.textRef.bind()}></input>
-                                </div> */}
                                 <select onChange={this.textRef.bind(this)} className="btn btn-light" >
                                     <option value="0">select the type of questions you want to see!</option>
                                     <option value="1">Computer Science</option>
@@ -36,7 +30,7 @@ class ProfilePage extends Component{
                                     <option value="6">Electrical</option>
                                 </select>
                             </div>
-                        {/* </form> */}
+                        :null} 
                     </div>
                     <div className="col-sm-6 d-flex flex-row-reverse row pt-3">
                         <div className="col-xs-3">
@@ -62,7 +56,7 @@ class ProfilePage extends Component{
                                 </div>
                             </div>
                     </div>
-                    <div className="col-sm-9.5 px-2" style={{width:'79vw'}}>
+                    <div className="col-sm-9.5 px-2" style={{width:'78vw'}}>
                         {this.state.check===0?(<Home state={this.props.location.state} search={this.state.search}/>):
                         this.state.check===1?(<MyQuestion state={this.props.location.state}/>):
                         (<Profile state={this.props.location.state}/>)
@@ -74,7 +68,7 @@ class ProfilePage extends Component{
     }
 
     textRef=(element)=>{
-        this.setState({search:element.target.value});
+        this.setState({search:element.target.value},()=>{console.log("change")});
     }
     
     changeOne=()=>{

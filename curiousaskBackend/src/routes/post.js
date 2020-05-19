@@ -13,7 +13,7 @@ router.post('/addPost',(req,res)=>{
     })
 })
 
-router.get('/findTopic',(req,res)=>{
+router.post('/findTopic',(req,res)=>{
     PostsModel.findTopic(req,(error,response)=>{
         if(error){
             res.sendStatus('404')
@@ -23,11 +23,13 @@ router.get('/findTopic',(req,res)=>{
     })
 })
 
-router.get('/findSpecific',(req,res)=>{
+router.post('/findSpecific',(req,res)=>{
+    // console.log(req.body)
     PostsModel.findSpecific(req,(error,response)=>{
         if(error){
             res.sendStatus('404')
         }else{
+            // console.log(response)
             res.send(response)
         }
     })
@@ -44,7 +46,7 @@ router.get('/findAll',(req,res)=>{
     })
 })
 
-router.get('/findUser',(req,res)=>{
+router.post('/findUser',(req,res)=>{
     PostsModel.findUser(req,(error,response)=>{
         if(error){
             res.sendStatus('404')

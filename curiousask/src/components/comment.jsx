@@ -1,3 +1,4 @@
+
 import React,{Component} from'react';
 
 class Comment extends Component{
@@ -8,9 +9,9 @@ class Comment extends Component{
         }
     }
 
-    componentDidMount(){
-        this.fetchComments();
-    }
+    // componentDidMount(){
+    //     this.fetchComments();
+    // }
 
     render(){
         return(

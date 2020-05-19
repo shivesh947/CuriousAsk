@@ -9,7 +9,9 @@ class QuestionPost extends Component{
             post:"0"
         }
     }
+    componentWillUpdate(){
 
+    }
     render(){
         return(
             <div className="form-group p-3">
@@ -64,6 +66,12 @@ class QuestionPost extends Component{
         .then(res=>{
             if(res.ok){
                 return res.json()
+            }
+        })
+        .then(res=>{
+            if(res.content.length>0){
+                this.props.updating();
+                // this.componentWillUpdate;
             }
         })
         .catch(err=>{

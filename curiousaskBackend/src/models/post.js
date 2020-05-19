@@ -23,14 +23,15 @@ var postSchema = new mongoose.Schema({
 const PostsModel = mongoose.model("Posts",postSchema,"posts");
 
 PostsModel.findSpecific = function(req,callBack){
-    let post = {id_:req.id_};
-    JSON.stringify(post);
+    let post = {_id:req.body._id};
+    // JSON.stringify(post);
+    // console.log(post)
     PostsModel.find(post,callBack);
 }
 
 PostsModel.findTopic = function(req,callBack){
-    let post = { typeOf: req.body.type};
-    JSON.stringify(post);
+    let post = { typeOf: req.body.typeOf};
+    // JSON.stringify(post);
     PostsModel.find(post,callBack).sort({date: -1});
 }
 
@@ -52,9 +53,9 @@ PostsModel.addPost = function(req,callBack){
 }
 
 PostsModel.findUser = function(req,callBack){
-    let post={userName:req.body.userName};
-    JSON.stringify(post);
-    PostsModel.find(post,callBack);
+    let post={userId:req.body.userId};
+    // JSON.stringify(post);
+    PostsModel.find(post,callBack).sort({date:-1});
 }
 
 module.exports = PostsModel;

@@ -11,7 +11,7 @@ const app = express();
 const port = 4000;
 const verifyUser=(req,res,next)=>{ 
     var token = req.body.token;
-    // console.log(req.query.token)
+    // console.log(req.query.typeOf)
     if(req.query.token&&req.query.token.length>0){
         token = req.query.token   
     }
