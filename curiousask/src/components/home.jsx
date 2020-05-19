@@ -20,7 +20,7 @@ class Home extends Component{
             <div className="row">
                 <div className="col-sm-7">
                     <div>
-                        <QuestionPost state={this.props.state} updating={this.fetchAgain}/>
+                        <QuestionPost state={this.props.state } updating={this.fetchAgain}/>
                     </div>
                     <div>
                         {this.state.postList.map(post=>
